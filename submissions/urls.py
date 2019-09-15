@@ -9,4 +9,7 @@ urlpatterns = [
     path('submission/create/',
          views.create,
          name='create'),
+    path('submission/delete/<str:secret>/',
+         views.delete,
+         name='delete'),
 ]

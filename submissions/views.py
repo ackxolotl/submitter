@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.core.exceptions import ValidationError
-from django.utils.html import escape
 
 from .models import Submission
 import datetime
@@ -27,12 +26,24 @@ def create(request):
 
     try:
         submission.full_clean()
-    except ValidationError:
-        return HttpResponse('{} is not a valid URL.'.format(escape(url)))
+    except ValidationError as e:
+        return HttpResponse('. '.join(e.messages))
 
     submission.save()
 
-    return HttpResponse('OK', status=200)
+    context = {
+        'submission': submission,
+    }
+
+    return render(request, 'submissions/create.html', context)
+
+
+def delete(request, secret):
+    submission = Submission.objects.filter(secret=secret).first()
+    if submission and submission.delete():
+        return HttpResponse('Submission deleted.')
+    else:
+        return HttpResponse('Nothing to delete.', status=404)
 
 
 def upvote(request, submission_id):

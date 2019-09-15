@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from uuid import uuid4
+
 
 # Create your models here.
 class Submission(models.Model):
@@ -10,6 +12,13 @@ class Submission(models.Model):
 
     url = models.URLField(
         _('URL'),
+        unique=True,
+    )
+
+    secret = models.UUIDField(
+        _('secret'),
+        default=uuid4,
+        unique=True,
     )
 
     upvotes = models.IntegerField(

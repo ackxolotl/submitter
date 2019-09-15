@@ -1,0 +1,37 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Klopapier-Submission</title>
+	</head>
+	<body>
+		<main>
+			<p>Thank you for your submission to the Klopapier!</p>
+
+			<p>You will be redirected to <a href="{{ submission.url }}">{{ submission.url }}</a> in <span id="time">5</span> seconds ...</p>
+
+			<p>If you want to have a look at all submissions, <a href="{% url 'index' %}">click here</a>.</p>
+
+			<p><a href="{% url 'delete' submission.secret %}">Undo this action</a>.</p>
+		</main>
+
+	<script>
+	var seconds = 5;
+
+	var x = setInterval(function() {
+		seconds = seconds - 1;
+
+		document.getElementById("time").innerHTML = seconds;
+
+		if (seconds <= 0) {
+			clearInterval(x);
+			location.href = '{{ submission.url }}';
+		}
+	}, 1000);
+	</script>
+	</body>
+</html>
+
