@@ -23,7 +23,7 @@ class Submission(models.Model):
 
     upvotes = models.IntegerField(
         _('upvotes'),
-        default=0,
+        default=1,
     )
 
     created_at = models.DateTimeField(
