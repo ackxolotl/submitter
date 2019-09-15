@@ -19,17 +19,15 @@
 				</tr>
 				{% for submission in submissions %}
 				<tr>
-					<td><a href="{{ submission.url }}">{{ submission.url }}</a></td>
+					<td><a href="{{ submission.url }}" target="_blank" rel="noreferrer">{{ submission.url }}</a></td>
 					<td>{{ submission.upvotes }}</td>
-					<td><a href="{% url 'upvote' submission.id %}">Upvote</a></td>
+					<td><a href="{% url 'upvote' submission.id %}"><div class="arrow-up" title="Upvote"></div></a></td>
 				</tr>
 				{% endfor %}
 			</table>
 
 			<footer>
-				<a href="https://liste.party/datenschutz.html">Datenschutz</a>
-				|
-				<a href="https://liste.party/impressum.html">Impressum</a>
+				<!-- Space for privacy statement and impressum !-->
 			</footer>
 		</main>
 	</body>
