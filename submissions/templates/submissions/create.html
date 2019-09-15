@@ -28,7 +28,7 @@
 
 		if (seconds <= 0) {
 			clearInterval(x);
-			location.href = '{{ submission.url }}';
+			history.back();
 		}
 	}, 1000);
 	</script>
