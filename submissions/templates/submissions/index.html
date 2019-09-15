@@ -1,0 +1,38 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Klopapier-Submissions</title>
+		<link href="{% static 'style.css' %}" rel="stylesheet">
+	</head>
+	<body>
+		<main>
+			<table>
+				<caption>Submissions</caption>
+				<tr>
+					<th>URL</th>
+					<th>Upvotes</th>
+					<th></th>
+				</tr>
+				{% for submission in submissions %}
+				<tr>
+					<td><a href="{{ submission.url }}">{{ submission.url }}</a></td>
+					<td>{{ submission.upvotes }}</td>
+					<td><a href="{% url 'upvote' submission.id %}">Upvote</a></td>
+				</tr>
+				{% endfor %}
+			</table>
+
+			<footer>
+				<a href="https://liste.party/datenschutz.html">Datenschutz</a>
+				|
+				<a href="https://liste.party/impressum.html">Impressum</a>
+			</footer>
+		</main>
+	</body>
+</html>
+
+
