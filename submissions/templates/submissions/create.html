@@ -11,7 +11,7 @@
 		<main>
 			<p>Thank you for your submission to the Klopapier!</p>
 
-			<p>You will be redirected to <a href="{{ submission.url }}">{{ submission.url }}</a> in <span id="time">5</span> seconds ...</p>
+			<p>You will be redirected to <a href="{{ submission.url }}">{{ submission.url }}</a> in <span id="time">10</span> seconds ...</p>
 
 			<p>If you want to have a look at all submissions, <a href="{% url 'index' %}">click here</a>.</p>
 
@@ -19,7 +19,7 @@
 		</main>
 
 	<script>
-	var seconds = 5;
+	var seconds = 10;
 
 	var x = setInterval(function() {
 		seconds = seconds - 1;

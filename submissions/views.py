@@ -9,7 +9,7 @@ import datetime
 # Create your views here.
 def index(request):
     submissions = Submission.objects.filter(
-        created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30),
+        created_at__gt=datetime.datetime.today()-datetime.timedelta(days=90),
     ).order_by('-upvotes', '-created_at').all()
 
     context = {
