@@ -10,6 +10,11 @@
 	</head>
 	<body>
 		<main>
+			<form action="{% url 'create' %}" method="get">
+				<input type="url" name="url" placeholder="Insert URL to submit and press enter" />
+				<input type="submit" style="display: none" />
+			</form>
+
 			<table>
 				<caption>Submissions</caption>
 				<tr>
