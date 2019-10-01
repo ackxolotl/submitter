@@ -6,7 +6,6 @@ from .models import Submission
 import datetime
 
 
-# Create your views here.
 def index(request):
     submissions = Submission.objects.filter(
         created_at__gt=datetime.datetime.today()-datetime.timedelta(days=90),

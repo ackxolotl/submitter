@@ -4,7 +4,6 @@ from django.utils.translation import gettext_lazy as _
 from uuid import uuid4
 
 
-# Create your models here.
 class Submission(models.Model):
     """
     A submission to the klopapier
