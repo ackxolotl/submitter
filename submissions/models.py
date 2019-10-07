@@ -20,7 +20,7 @@ class Submission(models.Model):
         unique=True,
     )
 
-    upvotes = models.IntegerField(
+    upvotes = models.PositiveIntegerField(
         _('upvotes'),
         default=1,
     )

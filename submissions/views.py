@@ -39,17 +39,20 @@ def create(request):
 
 def delete(request, secret):
     submission = Submission.objects.filter(secret=secret).first()
-    if submission and submission.delete():
-        return HttpResponse('Submission deleted.')
+    if submission:
+        if submission.delete():
+            return HttpResponse('Submission deleted.')
+        else:
+            return HttpResponse('Submission could not be deleted.', status=500)
     else:
         return HttpResponse('Nothing to delete.', status=404)
 
 
 def upvote(request, submission_id):
-    submission = Submission.objects.filter(id=submission_id).first()
+    submission = Submission.objects.filter(pk=submission_id).first()
 
     if submission:
-        submission.upvotes += 1
+        submission.upvotes = (submission.upvotes + 1) % (1 << 31)
         submission.save()
 
         return redirect(index)
