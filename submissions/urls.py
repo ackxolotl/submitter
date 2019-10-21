@@ -12,4 +12,7 @@ urlpatterns = [
     path('submission/delete/<str:secret>/',
          views.delete,
          name='delete'),
+    path('submission/stats/',
+         views.upvote_stats,
+         name='upvote_stats'),
 ]

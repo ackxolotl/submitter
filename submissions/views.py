@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 
 from .models import Submission
@@ -58,3 +58,13 @@ def upvote(request, submission_id):
         return redirect(index)
     else:
         return HttpResponse('Nothing to upvote.', status=404)
+
+
+def upvote_stats(request):
+    submissions = Submission.objects.filter(
+        created_at__gt=datetime.datetime.today()-datetime.timedelta(days=90),
+    ).order_by('-upvotes', '-created_at').all()
+
+    stats = dict(map(lambda submission: (submission.pk, submission.upvotes), submissions))
+
+    return JsonResponse(stats)
