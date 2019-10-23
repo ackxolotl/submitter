@@ -29,3 +29,6 @@ class Submission(models.Model):
         _('created at'),
         auto_now_add=True,
     )
+
+    def __str__(self):
+        return self.url
